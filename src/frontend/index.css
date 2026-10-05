@@ -1,0 +1,377 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Font Declarations ───────────────────────────────────────────────────── */
+/* Playfair Display & Inter loaded via Google Fonts in index.html */
+
+/* ─── Design Tokens ──────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* SLR Brand Colors */
+    --navy-deep: 0.148 0.042 258.3;        /* #0A1628 */
+    --navy-mid: 0.185 0.052 258.3;         /* #0F2040 */
+    --navy-card: 0.21 0.058 258.3;         /* #112244 */
+    --navy-dark: 0.08 0.025 260;           /* #060E1A */
+    --gold: 0.72 0.138 75.4;              /* #D4A843 */
+    --gold-light: 0.85 0.12 80;           /* #F5D080 */
+    --gold-dark: 0.58 0.12 72;            /* #B8861E */
+    --white: 1 0 0;
+    --off-white: 0.97 0.005 90;
+    --light-gray: 0.96 0 0;
+    --text-muted: 0.72 0 0;
+    --whatsapp: 0.75 0.18 145;            /* WhatsApp green */
+
+    /* shadcn tokens mapped to our palette */
+    --background: 0.148 0.042 258.3;
+    --foreground: 1 0 0;
+    --card: 0.21 0.058 258.3;
+    --card-foreground: 1 0 0;
+    --popover: 0.185 0.052 258.3;
+    --popover-foreground: 1 0 0;
+    --primary: 0.72 0.138 75.4;
+    --primary-foreground: 0.148 0.042 258.3;
+    --secondary: 0.185 0.052 258.3;
+    --secondary-foreground: 1 0 0;
+    --muted: 0.21 0.058 258.3;
+    --muted-foreground: 0.72 0 0;
+    --accent: 0.72 0.138 75.4;
+    --accent-foreground: 0.148 0.042 258.3;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 1 0 0;
+    --border: 0.3 0.04 258.3;
+    --input: 0.25 0.04 258.3;
+    --ring: 0.72 0.138 75.4;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.185 0.052 258.3;
+    --sidebar-foreground: 1 0 0;
+    --sidebar-primary: 0.72 0.138 75.4;
+    --sidebar-primary-foreground: 0.148 0.042 258.3;
+    --sidebar-accent: 0.21 0.058 258.3;
+    --sidebar-accent-foreground: 1 0 0;
+    --sidebar-border: 0.3 0.04 258.3;
+    --sidebar-ring: 0.72 0.138 75.4;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: oklch(var(--navy-deep));
+    color: oklch(var(--white));
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ─── Keyframe Animations ─────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatDelay {
+  0%, 100% {
+    transform: translateY(0px) rotate(45deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(45deg);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-12px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-whatsapp {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counter-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ─── Utility Classes ────────────────────────────────────────────────────── */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #d4a843 0%,
+    #fff8e1 25%,
+    #f5d080 45%,
+    #fff8e1 55%,
+    #d4a843 75%,
+    #b8861e 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+.shimmer-text-slow {
+  background: linear-gradient(
+    90deg,
+    #d4a843 0%,
+    #fff8e1 35%,
+    #d4a843 50%,
+    #fff8e1 65%,
+    #b8861e 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: floatDelay 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-float-slow {
+  animation: floatSlow 7s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-pulse-whatsapp {
+  animation: pulse-whatsapp 2s infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+/* Staggered children */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Dot grid pattern overlay */
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(212,168,67,0.12) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Diagonal line pattern */
+.diagonal-pattern {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    rgba(212, 168, 67, 0.04) 10px,
+    rgba(212, 168, 67, 0.04) 11px
+  );
+}
+
+/* Section separators */
+.gold-divider {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4a843, transparent);
+  border: none;
+}
+
+/* Card hover glow */
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(212, 168, 67, 0.25), 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Gold border on hover */
+.gold-border-hover {
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.gold-border-hover:hover {
+  border-color: rgba(212, 168, 67, 0.6);
+  box-shadow: 0 0 25px rgba(212, 168, 67, 0.2);
+  transform: translateY(-4px);
+}
+
+/* Navy background with noise texture overlay */
+.navy-section {
+  background-color: oklch(0.148 0.042 258.3);
+  position: relative;
+}
+
+.navy-section-mid {
+  background-color: oklch(0.185 0.052 258.3);
+}
+
+.section-padding {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+
+/* Gold CTA button */
+.btn-gold {
+  background: linear-gradient(135deg, #d4a843, #b8861e);
+  color: #0A1628;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #f5d080, #d4a843);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 168, 67, 0.4);
+}
+
+/* Outlined gold button */
+.btn-gold-outline {
+  background: transparent;
+  color: #d4a843;
+  font-weight: 700;
+  border: 2px solid #d4a843;
+  transition: all 0.3s ease;
+}
+
+.btn-gold-outline:hover {
+  background: rgba(212, 168, 67, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 168, 67, 0.2);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.148 0.042 258.3);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.72 0.138 75.4);
+  border-radius: 4px;
+}
+
+/* Focus ring in gold */
+:focus-visible {
+  outline: 2px solid oklch(0.72 0.138 75.4);
+  outline-offset: 2px;
+}
